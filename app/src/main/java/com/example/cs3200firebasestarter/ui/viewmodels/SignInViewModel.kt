@@ -34,6 +34,11 @@ class SignInViewModel(application: Application): AndroidViewModel(application) {
             uiState.errorMessage = "Password cannot be blank."
             return
         }
-        UserRepository.loginUser(uiState.email, uiState.password)
+        var loginSuccess = UserRepository.loginUser(uiState.email, uiState.password)
+        if(loginSuccess != 0){
+            uiState.passwordError = true
+            uiState.emailError = true
+            uiState.errorMessage = "Invalid email or password"
+        }
     }
 }

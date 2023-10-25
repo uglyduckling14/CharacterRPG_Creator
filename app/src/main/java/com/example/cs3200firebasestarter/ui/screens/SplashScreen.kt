@@ -17,14 +17,15 @@ fun SplashScreen(navHostController: NavHostController) {
 
     LaunchedEffect(true) {
         val loginStatusCheck = async {
-            // TODO: check to see if user is logged in
+            UserRepository.isUserLoggedIn()
         }
         // wait for 3 seconds or until the login check is
         // done before navigating
         delay(1000)
-        loginStatusCheck.await()
+        //check if user is logged in
+        val result: Boolean = loginStatusCheck.await()
         navHostController.navigate(
-            if (UserRepository.getCurrentUserId() == null) Routes.launchNavigation.route else Routes.appNavigation.route) {
+            if (!result) Routes.launchNavigation.route else Routes.appNavigation.route) {
             // makes it so that we can't get back to the
             // splash screen by pushing the back button
             popUpTo(navHostController.graph.findStartDestination().id) {
@@ -38,13 +39,13 @@ fun SplashScreen(navHostController: NavHostController) {
         verticalArrangement = Arrangement.SpaceAround
     ) {
         Text(
-            text = "Firebase Todos",
+            text = "RPG Creator",
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center
         )
         Text(
-            text = "USU-CS3200",
+            text = "Esperanza Hauptman",
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,

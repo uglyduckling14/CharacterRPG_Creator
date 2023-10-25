@@ -9,12 +9,23 @@ object UserRepository {
         Firebase.auth.createUserWithEmailAndPassword(email, password).await()
     }
 
-    suspend fun loginUser(email: String, password: String) {
-        Firebase.auth.signInWithEmailAndPassword(email, password).await()
+    suspend fun loginUser(email: String, password: String): Int {
+        try{
+            Firebase.auth.signInWithEmailAndPassword(email, password).await()
+            return 0
+        }catch(e :Exception){
+            println(e)
+            return 1;
+        }
+
     }
 
     fun getCurrentUserId(): String? {
         return Firebase.auth.currentUser?.uid
+    }
+
+    fun isUserLoggedIn(): Boolean{
+        return getCurrentUserId() != null
     }
 
     fun logout() {
