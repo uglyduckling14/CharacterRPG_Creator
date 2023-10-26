@@ -63,7 +63,7 @@ class CharViewModel(application: Application): AndroidViewModel(application) {
                 uiState.description
             )
         } else{ // update
-            val character = CharacterRepository.getCharacters().find{it.id ==id}
+            val character = CharacterRepository.getCharacters().find{it.id == id}
             if (character != null) {
                 CharacterRepository.updateCharacter(
                     character.copy(

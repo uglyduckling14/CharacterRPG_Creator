@@ -78,7 +78,9 @@ fun RootNavigation() {
             },
             floatingActionButton = {
                 if (currentDestination?.hierarchy?.none { it.route == Routes.launchNavigation.route || it.route == Routes.splashScreen.route } == true){
-                    FloatingActionButton(onClick = {}) {
+                    FloatingActionButton(onClick = {
+                        navController.navigate(Routes.createScreen.route)
+                    }) {
                         Icon(imageVector = Icons.Default.Add, contentDescription = "Add Item")
                     }
                 }
