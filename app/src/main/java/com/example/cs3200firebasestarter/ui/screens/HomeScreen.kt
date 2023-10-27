@@ -13,6 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.cs3200firebasestarter.ui.components.CharListItem
 import com.example.cs3200firebasestarter.ui.viewmodels.HomeViewModel
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -21,11 +22,9 @@ fun HomeScreen(navHostController: NavHostController) {
     val state = viewModel.uiState
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(true){
-        viewModel.getCharacters()
-    }
-
     LazyColumn{
+        println(32)
+        scope.launch{viewModel.getCharacters()}
         items(state.characters, key = {it.id !!}){character ->
             CharListItem(
                 name = character.name,

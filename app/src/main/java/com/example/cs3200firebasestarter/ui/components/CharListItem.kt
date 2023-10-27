@@ -22,12 +22,12 @@ fun CharListItem(
         modifier = Modifier.padding(16.dp)
     ) {
         Text(
-            text = "Race: $race",
+            text = "Name: $name",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Name: $name",
+            text = "Race: $race",
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal
         )

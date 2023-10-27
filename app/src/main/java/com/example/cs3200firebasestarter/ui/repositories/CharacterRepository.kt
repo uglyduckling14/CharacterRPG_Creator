@@ -7,18 +7,20 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 object CharacterRepository {
-    val db = Firebase.firestore
 
     private val characterCache = mutableListOf<Character_>()
     private var cacheInitialized = false
     suspend fun getCharacters(): List<Character_>{
         if(!cacheInitialized){
-            val snapshot = db.collection("characters")
+            println(15)
+            val snapshot = Firebase.firestore.collection("characters")
                 .whereEqualTo("userId", UserRepository.getCurrentUserId())
                 .get()
                 .await()
             characterCache.addAll(snapshot.toObjects())
             cacheInitialized = true
+        }else{
+            print(23)
         }
         return characterCache
     }
@@ -31,7 +33,7 @@ object CharacterRepository {
         gender: String,
         description: String
     ): Character_{
-        val doc = db.collection("characters").document()
+        val doc = Firebase.firestore.collection("characters").document()
 
         val character = Character_(
             name = name,

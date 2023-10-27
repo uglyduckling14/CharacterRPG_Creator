@@ -34,7 +34,7 @@ fun RootNavigation() {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                Text("Drawer title", modifier = Modifier.padding(16.dp))
+                Text("Navigation", modifier = Modifier.padding(16.dp))
                 Divider()
                 NavigationDrawerItem(
                     label = { Text(text = "Logout") },
@@ -53,7 +53,6 @@ fun RootNavigation() {
                         }
                     }
                 )
-                // ...other drawer items
             }
         }
     ) {
@@ -61,7 +60,7 @@ fun RootNavigation() {
             topBar = {
                 if (currentDestination?.hierarchy?.none { it.route == Routes.launchNavigation.route || it.route == Routes.splashScreen.route } == true) {
                     TopAppBar(
-                        title = { Text(text = "My App")},
+                        title = { Text(text = "Character Creator")},
                         navigationIcon = {
                             IconButton(onClick = {
                                 scope.launch {

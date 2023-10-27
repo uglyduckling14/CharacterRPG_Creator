@@ -21,7 +21,7 @@ fun SplashScreen(navHostController: NavHostController) {
         }
         // wait for 3 seconds or until the login check is
         // done before navigating
-        delay(1000)
+        delay(3000)
         //check if user is logged in
         val result: Boolean = loginStatusCheck.await()
         navHostController.navigate(
@@ -33,7 +33,6 @@ fun SplashScreen(navHostController: NavHostController) {
             }
         }
     }
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceAround
