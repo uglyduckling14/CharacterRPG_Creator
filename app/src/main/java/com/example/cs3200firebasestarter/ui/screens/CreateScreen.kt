@@ -12,7 +12,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -31,9 +30,6 @@ fun CreateScreen(navHostController: NavHostController) {
     val state = viewModel.uiState
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(true){
-
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -22,8 +22,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.cs3200firebasestarter.ui.components.FormField
 import com.example.cs3200firebasestarter.ui.navigation.Routes
-import com.example.cs3200firebasestarter.ui.repositories.CharacterRepository
-import com.example.cs3200firebasestarter.ui.repositories.UserRepository
 import com.example.cs3200firebasestarter.ui.viewmodels.CharViewModel
 import kotlinx.coroutines.launch
 
@@ -56,7 +54,37 @@ fun EditScreen(navHostController: NavHostController, id: String?) {
                 FormField(
                     value = state.age.toString(),
                     onValueChange = { state.age = it.toInt() },
+                    placeholder = { Text("Age") },
+                    error = state.error
+                )
+                FormField(
+                    value = state.race,
+                    onValueChange = { state.race = it },
                     placeholder = { Text("Race") },
+                    error = state.error
+                )
+                FormField(
+                    value = state.class_,
+                    onValueChange = { state.class_ = it },
+                    placeholder = { Text("Class") },
+                    error = state.error
+                )
+                FormField(
+                    value = state.height.toString(),
+                    onValueChange = { state.height = it.toInt() },
+                    placeholder = { Text("Height") },
+                    error = state.error
+                )
+                FormField(
+                    value = state.gender,
+                    onValueChange = { state.gender = it },
+                    placeholder = { Text("Gender") },
+                    error = state.error
+                )
+                FormField(
+                    value = state.description,
+                    onValueChange = { state.description = it },
+                    placeholder = { Text("Description") },
                     error = state.error
                 )
                 Row (
@@ -68,6 +96,7 @@ fun EditScreen(navHostController: NavHostController, id: String?) {
                     }
                     Button(onClick = { scope.launch {
                         viewModel.saveChar()
+                        navHostController.navigate(Routes.home.route)
 //                        if (CharacterRepository.getCurrentUserId() != null) {
 //                            navHostController.navigate(Routes.appNavigation.route) {
 //                                popUpTo(navHostController.graph.id) {

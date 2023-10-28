@@ -12,15 +12,13 @@ object CharacterRepository {
     private var cacheInitialized = false
     suspend fun getCharacters(): List<Character_>{
         if(!cacheInitialized){
-            println(15)
             val snapshot = Firebase.firestore.collection("characters")
                 .whereEqualTo("userId", UserRepository.getCurrentUserId())
                 .get()
                 .await()
+            characterCache.clear()
             characterCache.addAll(snapshot.toObjects())
             cacheInitialized = true
-        }else{
-            print(23)
         }
         return characterCache
     }

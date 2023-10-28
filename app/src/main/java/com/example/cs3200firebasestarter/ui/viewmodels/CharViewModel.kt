@@ -38,15 +38,6 @@ class CharViewModel(application: Application): AndroidViewModel(application) {
         uiState.gender = character.gender?:""
         uiState.description = character.description?:""
     }
-//    suspend fun createChar(){
-//        uiState.name = ""
-//        uiState.age = 0
-//        uiState.race = ""
-//        uiState.class_ = ""
-//        uiState.height = 0
-//        uiState.gender = ""
-//        uiState.description = ""
-//    }
     suspend fun saveChar(){
         validate()
         if(uiState.error){

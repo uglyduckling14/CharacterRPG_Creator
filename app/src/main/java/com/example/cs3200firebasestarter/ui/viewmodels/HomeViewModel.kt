@@ -13,13 +13,9 @@ class HomeScreenState{
 class HomeViewModel(application: Application): AndroidViewModel(application) {
     val uiState = HomeScreenState()
     suspend fun getCharacters(){
-        val characters =CharacterRepository.getCharacters()
+        val characters = CharacterRepository.getCharacters()
         uiState._characters.clear()
         uiState._characters.addAll(characters)
     }
 
-    suspend fun updateCharacters(oldChar: Character_){
-        val copyChar = oldChar.copy()
-        uiState._characters[uiState._characters.indexOf(oldChar)] = copyChar
-    }
 }

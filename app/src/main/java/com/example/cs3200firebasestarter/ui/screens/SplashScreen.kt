@@ -14,7 +14,6 @@ import kotlinx.coroutines.*
 
 @Composable
 fun SplashScreen(navHostController: NavHostController) {
-
     LaunchedEffect(true) {
         val loginStatusCheck = async {
             UserRepository.isUserLoggedIn()
@@ -22,8 +21,8 @@ fun SplashScreen(navHostController: NavHostController) {
         // wait for 3 seconds or until the login check is
         // done before navigating
         delay(3000)
-        //check if user is logged in
         val result: Boolean = loginStatusCheck.await()
+        //check if user is logged in
         navHostController.navigate(
             if (!result) Routes.launchNavigation.route else Routes.appNavigation.route) {
             // makes it so that we can't get back to the
